@@ -10,7 +10,7 @@ import Jogar.ComandosTeclado;
 public class entity {
 	
 	
-public int x, y;
+public int wordX, wordY;
 public int speed;
 
 public BufferedImage up1, up2, down1, down2, left1, left2, righ1, right2;

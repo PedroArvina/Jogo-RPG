@@ -16,17 +16,24 @@ public class Player extends entity {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    
+    public final int screenX;
+    public final int screenY;
+	
+	
 
     public Player(PainelJogo gp, ComandosTeclado keyH) {
         this.gp = gp;
         this.keyH = keyH;
+		screenX = gp.screenWidth/2 - (gp.tileSize/2);
+		screenY = gp.screenHeight/2 - (gp.tileSize/2);
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        wordX = gp.tileSize * 23;
+        wordY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
         // Initialize sprite variables
@@ -55,16 +62,16 @@ public class Player extends entity {
     	
         if (keyH.upPressed) {
             direction = "up";
-            y -= speed;
+            wordY -= speed;
         } else if (keyH.downPressed) {
             direction = "down";
-            y += speed;
+            wordY += speed;
         } else if (keyH.leftPressed) {
             direction = "left";
-            x -= speed;
+            wordX -= speed;
         } else if (keyH.rightPressed) {
             direction = "right";
-            x += speed;
+            wordX += speed;
         }
         
         // Animation logic
@@ -98,7 +105,7 @@ public class Player extends entity {
                 break;
         }
         if (image != null) {
-            g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
     }
 }
